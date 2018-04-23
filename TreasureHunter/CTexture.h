@@ -8,6 +8,14 @@ public:
 
 	int LoadTexture(const TCHAR* filename);
 	void ReleaseTexture(int slotid);
+	
+	LPDIRECT3DTEXTURE9 GetTexture(int slotid) const
+	{
+		if (slotid < TEXTURE_POOL_MAX)
+			return m_pTexture[slotid];
+		return NULL;
+	}
+
 
 private:
 	int GetEmptySlot() const;
