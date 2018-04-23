@@ -29,7 +29,7 @@ int CTexture::LoadTexture(const TCHAR* filename)
 	LPDIRECT3DTEXTURE9 texture;
 
 	auto hr = D3DXCreateTextureFromFileEx(m_pD3Device, filename, 0, 0, 0, 0,
-		D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT, D3DCOLOR_XRGB(0, 0, 0), &info, NULL, &texture);
+		D3DFMT_A8R8G8B8, D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT, D3DCOLOR_XRGB(0, 0, 0), &info, NULL, &texture);
 
 
 	if (FAILED(hr))
