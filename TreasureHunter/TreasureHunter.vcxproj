@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CBoard.h" />
+    <ClInclude Include="CEffect.h" />
     <ClInclude Include="CScreen.h" />
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="CTexture.h" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CBoard.cpp" />
+    <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CScreen.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CTexture.cpp" />

@@ -32,6 +32,11 @@ public:
 	bool FindShipHead(int x, int y, int &shipID, int &startX);
 	void ClearShip(int x, int y, int &shipID);
 
+	bool IsClicked(int x, int y);
+	void ChangeBlock(int x, int y);
+	bool GetBlockPos(int x, int y, D3DXVECTOR3& pos);
+
+
 	void Draw();
 
 

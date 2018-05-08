@@ -105,8 +105,12 @@ bool CBoard::IsEmptyBlock(int x, int y, int shipID)
 
 void CBoard::PutSmallShip(int x, int y, int shipID)
 {
-	m_Board[y][x]->SetTexture(m_Textures[BK_SHIP]);
-	m_Board[y][x+1]->SetTexture(m_Textures[BK_SHIP]);
+	//if (m_PlayerId == 0)
+	{
+		m_Board[y][x]->SetTexture(m_Textures[BK_SHIP]);
+		m_Board[y][x + 1]->SetTexture(m_Textures[BK_SHIP]);
+	}
+	
 
 	m_BoardState[y][x] = shipID;
 	m_BoardState[y][x+1] = shipID;
@@ -115,10 +119,12 @@ void CBoard::PutSmallShip(int x, int y, int shipID)
 }
 void CBoard::PutMiddleShip(int x, int y, int shipID)
 {
-	m_Board[y][x]->SetTexture(m_Textures[BK_SHIP]);
-	m_Board[y][x + 1]->SetTexture(m_Textures[BK_SHIP]);
-	m_Board[y][x + 2]->SetTexture(m_Textures[BK_SHIP]);
-
+	//if (m_PlayerId == 0)
+	{
+		m_Board[y][x]->SetTexture(m_Textures[BK_SHIP]);
+		m_Board[y][x + 1]->SetTexture(m_Textures[BK_SHIP]);
+		m_Board[y][x + 2]->SetTexture(m_Textures[BK_SHIP]);
+	}
 	m_BoardState[y][x] = shipID;
 	m_BoardState[y][x + 1] = shipID;
 	m_BoardState[y][x + 2] = shipID;
@@ -127,11 +133,13 @@ void CBoard::PutMiddleShip(int x, int y, int shipID)
 }
 void CBoard::PutBigShip(int x, int y, int shipID)
 {
-	m_Board[y][x]->SetTexture(m_Textures[BK_SHIP]);
-	m_Board[y][x + 1]->SetTexture(m_Textures[BK_SHIP]);
-	m_Board[y][x + 2]->SetTexture(m_Textures[BK_SHIP]);
-	m_Board[y][x + 3]->SetTexture(m_Textures[BK_SHIP]);
-
+	//if (m_PlayerId == 0)
+	{
+		m_Board[y][x]->SetTexture(m_Textures[BK_SHIP]);
+		m_Board[y][x + 1]->SetTexture(m_Textures[BK_SHIP]);
+		m_Board[y][x + 2]->SetTexture(m_Textures[BK_SHIP]);
+		m_Board[y][x + 3]->SetTexture(m_Textures[BK_SHIP]);
+	}
 	m_BoardState[y][x] = shipID;
 	m_BoardState[y][x + 1] = shipID;
 	m_BoardState[y][x + 2] = shipID;
@@ -215,7 +223,37 @@ void CBoard::ClearShip(int x, int y, int &shipID)
 
 }
 
+bool CBoard::IsClicked(int x, int y)
+{
+	int state = m_BoardState[y][x];
 
+	if (state <= -1 && state >= 100)
+		return true;
+
+	return false;
+}
+
+void CBoard::ChangeBlock(int x, int y)
+{
+	int state = m_BoardState[y][x];
+
+	if (state >= 1 && state <= 5)
+		m_Board[y][x]->SetTexture(m_Textures[BK_HIT]);
+	else
+		m_Board[y][x]->SetTexture(m_Textures[BK_FAIL]);
+
+}
+
+bool CBoard::GetBlockPos(int x, int y, D3DXVECTOR3& pos)
+{
+	if (x >= 0 && x < BOARD_MAX && y >= 0 && y < BOARD_MAX)
+	{
+		pos = m_Board[y][x]->GetPosition();
+		return true;
+	}
+	return false;
+
+}
 
 void CBoard::Draw()
 {
